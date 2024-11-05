@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
 function App() {
-  // Initialize state
   const [quotes, setQuotes] = useState(() => {
     const savedQuotes = localStorage.getItem('quotes');
     return savedQuotes ? JSON.parse(savedQuotes) : [];
@@ -9,12 +8,10 @@ function App() {
   const [newQuote, setNewQuote] = useState('');
   const [author, setAuthor] = useState('');
 
-  // Sync with local storage
   useEffect(() => {
     localStorage.setItem('quotes', JSON.stringify(quotes));
   }, [quotes]);
 
-  // Add a new quote
   const addQuote = () => {
     if (newQuote.trim() && author.trim()) {
       setQuotes([...quotes, { text: newQuote, author }]);
@@ -23,7 +20,6 @@ function App() {
     }
   };
 
-  // Delete a quote by index
   const deleteQuote = (index) => {
     setQuotes(quotes.filter((_, i) => i !== index));
   };
